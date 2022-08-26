@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 2022/08/23 18:55:07
+// Create Date: 2022/08/26 22:52:23
 // Design Name: 
-// Module Name: sign_extend
+// Module Name: pc
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,11 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module sign_extend (
-    input wire [15:0] i_imm,
-    input wire i_ctrl,
-    output wire [31:0] o_imm
+module pc (
+    input wire i_clk,
+    input wire i_rst,
+    input wire [31:0] i_npc,
+    output reg [31:0] o_pc
 );
-  // 正常情况下在立即数进行符号拓展,但当为LUI指令时在立即数的后面加16个0
-  assign o_imm = (i_ctrl == 0) ? {{16{i_imm[15]}}, i_imm} : {i_imm, 16'b0};
+  always @(posedge i_clk) begin
+    if (!i_rst) o_pc <= 32'b0;
+    else o_pc <= i_npc;
+  end
 endmodule

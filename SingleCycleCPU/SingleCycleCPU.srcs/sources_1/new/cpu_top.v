@@ -64,6 +64,7 @@ module cpu_top (
   wire [1:0] br_ctrl;
   wire reg_write;
   wire mem_write;
+  wire se_ctrl;
   wire mux1_ctrl;
   wire mux2_ctrl;
   wire mux3_ctrl;
@@ -76,6 +77,7 @@ module cpu_top (
       .o_br_ctrl(br_ctrl),
       .o_reg_write(reg_write),
       .o_mem_write(mem_write),
+      .o_se_ctrl(se_ctrl),
       .o_c1(mux1_ctrl),
       .o_c2(mux2_ctrl),
       .o_c3(mux3_ctrl),
@@ -87,6 +89,7 @@ module cpu_top (
 
   sign_extend u_se (
     .i_imm(imm),
+    .i_ctrl(se_ctrl),
     .o_imm(ext_imm)
   );
 
