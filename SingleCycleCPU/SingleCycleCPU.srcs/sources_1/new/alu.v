@@ -36,8 +36,8 @@ module alu (
       temp_result <= i_input2;
       3'b010:  // ADD/ADDIU/LW/SW
       temp_result <= i_input1 + i_input2;
-      3'b100:  // SUB
-      temp_result <= i_input1 - i_input2;
+      3'b100:  // SLTIU
+      temp_result <= (i_input1 < i_input2) ? 32'b1 : 32'b0;
       default: temp_result <= i_input2;
     endcase
   end

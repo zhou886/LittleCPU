@@ -22,7 +22,8 @@
 
 module cpu_top (
     input wire i_clk,
-    input wire i_rst
+    input wire i_rst,
+    output wire[31:0] debug
 );
   // PC模块
   wire [31:0] pc;
@@ -54,7 +55,7 @@ module cpu_top (
   assign addr = inst[25:0];
 
   instruction_memory u_im (
-      .i_inst_addr(pc),
+      .i_inst_addr(pc[9:2]),
       .o_inst(inst)
   );
 
@@ -67,7 +68,6 @@ module cpu_top (
   wire mux2_ctrl;
   wire mux3_ctrl;
   wire mux4_ctrl;
-  wire ext_ctrl;
 
   control_unit u_cn (
       .i_opcode(opcode),
@@ -79,15 +79,13 @@ module cpu_top (
       .o_c1(mux1_ctrl),
       .o_c2(mux2_ctrl),
       .o_c3(mux3_ctrl),
-      .o_c4(mux4_ctrl),
-      .o_ext_ctrl(ext_ctrl)
+      .o_c4(mux4_ctrl)
   );
 
   // 立即数拓展
   wire [31:0] ext_imm;
 
   sign_extend u_se (
-    .i_ctrl(ext_ctrl),
     .i_imm(imm),
     .o_imm(ext_imm)
   );
@@ -173,4 +171,6 @@ module cpu_top (
     .i_input2(reg_data2),
     .o_npc(npc)
   );
+  
+  assign debug = alu_result;
 endmodule

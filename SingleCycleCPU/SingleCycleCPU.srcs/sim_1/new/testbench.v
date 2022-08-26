@@ -20,7 +20,25 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module testbench(
+module testbench ();
+  reg clk;
+  reg rst;
+  wire [31:0] res;
 
-    );
+  initial begin
+    
+    clk = 0;
+    rst = 0;
+    #30 rst = 1;
+    #53 rst = 0;
+    #500 $stop;
+  end
+
+  always #10 clk = ~clk;
+
+  cpu_top u_cpu_top (
+      .i_clk(clk),
+      .i_rst(rst),
+      .debug(res)
+  );
 endmodule

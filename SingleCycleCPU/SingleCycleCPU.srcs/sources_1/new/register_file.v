@@ -32,6 +32,10 @@ module register_file (
 );
   reg [31:0] register_file[31:0];
 
+  initial begin
+    $readmemb("D:/CODE/Verilog/LittleCPU/SingleCycleCPU/SingleCycleCPU.srcs/sources_1/new/RegData.txt", register_file, 0, 31);
+  end
+
   assign o_read_data1 = (i_read_addr1 == 0) ? 32'b0 : register_file[i_read_addr1];
   assign o_read_data2 = (i_read_addr2 == 0) ? 32'b0 : register_file[i_read_addr2];
 

@@ -21,10 +21,13 @@
 
 
 module instruction_memory (
-    input  wire [9:2] i_inst_addr,
+    input  wire [ 9:2] i_inst_addr,
     output wire [31:0] o_inst
 );
   reg [31:0] inst_memory[255:0];
+  initial begin
+    $readmemh("D:/CODE/Verilog/LittleCPU/SingleCycleCPU/SingleCycleCPU.srcs/sources_1/new/InstFlow.txt", inst_memory, 0, 255);
+  end
   // 因为只设置了256个指令存储字，所以只用指令地址的8位
   assign o_inst = inst_memory[i_inst_addr];
 endmodule

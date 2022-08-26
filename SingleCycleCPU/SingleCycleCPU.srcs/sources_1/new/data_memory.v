@@ -31,6 +31,11 @@ module data_memory (
 
   assign o_read_data = data_memory[i_addr];
 
+  initial begin
+    $readmemb("D:/CODE/Verilog/LittleCPU/SingleCycleCPU/SingleCycleCPU.srcs/sources_1/new/MemData.txt", data_memory, 0, 255);
+  end
+
+
   always @(posedge i_clk) begin
     if (i_mem_write) begin
       data_memory[i_addr] <= i_write_data;
