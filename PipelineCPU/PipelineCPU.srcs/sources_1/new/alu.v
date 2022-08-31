@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "definition.vh"
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -11,7 +12,7 @@
 // Tool Versions: 
 // Description: 
 //   拥有两路32位输入和一路32位输出,支持加/减/按位与/按位或/按位异或/左移
-// /右移/取第二路输入运算.
+// /右移/判断大小/取第二路输入运算.
 // Dependencies: 
 // 
 // Revision:
@@ -29,13 +30,13 @@ module alu (
 );
 
   assign o_output = 
-        (i_ctrl == 4'b0001) ? (i_input1 + i_input2) :
-        (i_ctrl == 4'b0010) ? (i_input1 - i_input2) :
-        (i_ctrl == 4'b0011) ? (i_input1 & i_input2) :
-        (i_ctrl == 4'b0100) ? (i_input1 | i_input2) :
-        (i_ctrl == 4'b0101) ? (i_input1 ^ i_input2) :
-        (i_ctrl == 4'b0110) ? (i_input1 << i_input2) :
-        (i_ctrl == 4'b0111) ? (i_input1 >> i_input2) :
-        (i_ctrl == 4'b1000) ? ((i_input1 < i_input2) ? 32'b1 : 32'b0) :
+        (i_ctrl == `ALU_ADD) ? (i_input1 + i_input2) :
+        (i_ctrl == `ALU_SUB) ? (i_input1 - i_input2) :
+        (i_ctrl == `ALU_AND) ? (i_input1 & i_input2) :
+        (i_ctrl == `ALU_OR)  ? (i_input1 | i_input2) :
+        (i_ctrl == `ALU_XOR) ? (i_input1 ^ i_input2) :
+        (i_ctrl == `ALU_ML)  ? (i_input1 << i_input2) :
+        (i_ctrl == `ALU_MR)  ? (i_input1 >> i_input2) :
+        (i_ctrl == `ALU_JGE) ? ((i_input1 < i_input2) ? 32'b1 : 32'b0) :
         i_input2;
 endmodule

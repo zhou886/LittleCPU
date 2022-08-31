@@ -48,3 +48,4 @@ add_files D:/CODE/Verilog/LittleCPU/LittleCPU/LittleCPU.srcs/sources_1/new/npc.v
 update_compile_order -fileset sources_1
 close [ open D:/CODE/Verilog/LittleCPU/LittleCPU/LittleCPU.srcs/sources_1/new/pc.v w ]
 add_files D:/CODE/Verilog/LittleCPU/LittleCPU/LittleCPU.srcs/sources_1/new/pc.v
+update_compile_order -fileset sources_1

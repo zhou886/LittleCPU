@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`include "definition.vh"
 //////////////////////////////////////////////////////////////////////////////////
 // Company: 
 // Engineer: 
@@ -27,10 +28,10 @@ module imm_extend (
     output wire [31:0] o_imm
 );
   assign o_imm =
-      // 在立即数后面加16个0
-      (i_ctrl == 2'b11) ? {i_imm, 16'b0} :
       // 符号拓展至32位
-      (i_ctrl == 2'b10) ? {{16{i_imm[15]}}, i_imm} :
+      (i_ctrl == `IMM_SIGN_EXT) ? {{16{i_imm[15]}}, i_imm} :
+      // 在立即数后面加16个0
+      (i_ctrl == `IMM_LUI_EXT) ? {i_imm, 16'b0} :
       // 零拓展至32位
       {16'b0, i_imm};
 endmodule
