@@ -41,3 +41,29 @@ module forward_unit (
     (i_wb_reg_write_enable && i_wb_reg_write_addr == i_rt) ? 2'b10 :
     2'b00;
 endmodule
+
+module ID_forword_unit (
+    input wire i_ex_reg_write_enable,
+    input wire i_mem_reg_write_enable,
+    input wire i_wb_reg_write_enable,
+    input wire [4:0] i_ex_reg_write_addr,
+    input wire [4:0] i_mem_reg_write_addr,
+    input wire [4:0] i_wb_reg_write_addr,
+    input wire [4:0] i_rs,
+    input wire [4:0] i_rt,
+
+    output wire [1:0] o_npc_input1_mux_ctrl,
+    output wire [1:0] o_npc_input2_mux_ctrl
+);
+  assign o_npc_input1_mux_ctrl =
+    (i_ex_reg_write_enable && i_ex_reg_write_addr == i_rs) ? 2'b01 :
+    (i_mem_reg_write_enable && i_mem_reg_write_addr == i_rs) ? 2'b10 :
+    (i_wb_reg_write_enable && i_wb_reg_write_addr == i_rs) ? 2'b11 :
+    2'b00;
+  
+  assign o_npc_input2_mux_ctrl =
+    (i_ex_reg_write_enable && i_ex_reg_write_addr == i_rt) ? 2'b01 :
+    (i_mem_reg_write_enable && i_mem_reg_write_addr == i_rt) ? 2'b10 :
+    (i_wb_reg_write_enable && i_wb_reg_write_addr == i_rt) ? 2'b11 :
+    2'b00;
+endmodule

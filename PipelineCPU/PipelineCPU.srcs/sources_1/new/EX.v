@@ -33,6 +33,8 @@ module EX (
     input wire [4:0] i_wb_reg_write_addr,
     input wire [4:0] i_rs,
     input wire [4:0] i_rt,
+    input wire [31:0] i_mem_reg_data,
+    input wire [31:0] i_wb_reg_data,
 
     output wire [31:0] o_alu_result,
     output wire [31:0] o_npc

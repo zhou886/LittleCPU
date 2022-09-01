@@ -33,7 +33,7 @@ module pipeline_control_unit (
   reg [4:0] pipeline_ctrl;
   always @(posedge i_clk) begin
     if (!i_rst) begin
-      pipeline_ctrl <= 5'b00001;
+      pipeline_ctrl <= 5'b00011;
     end else if (i_ex_is_lw && (i_ex_reg_write_addr == i_rs || i_ex_reg_write_addr == i_rt)) begin
       pipeline_ctrl <= 5'b11000;
     end else begin

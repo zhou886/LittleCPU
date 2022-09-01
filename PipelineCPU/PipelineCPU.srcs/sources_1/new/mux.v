@@ -52,3 +52,19 @@ module mux32_3_1 (
     (i_ctrl == 2'b10) ? i_input3 :
     i_input1;
 endmodule
+
+module mux32_4_1 (
+    input wire [31:0] i_input1,
+    input wire [31:0] i_input2,
+    input wire [31:0] i_input3,
+    input wire [31:0] i_input4,
+    input wire [1:0] i_ctrl,
+    output wire [31:0] o_output
+); 
+  assign o_output =
+    (i_ctrl == 2'b00) ? i_input1 :
+    (i_ctrl == 2'b01) ? i_input2 :
+    (i_ctrl == 2'b10) ? i_input3 :
+    (i_ctrl == 2'b11) ? i_input4 :
+    i_input1;
+endmodule

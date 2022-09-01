@@ -74,6 +74,11 @@ module cpu_top (
   wire id_mux32_2_ctrl;
   wire [31:0] id_reg_data1;
   wire [31:0] id_reg_data2;
+  wire ex_register_file_write_enable;
+  wire mem_reg_write_enable;
+  wire [4:0] mem_reg_write_addr;
+  wire [31:0] ex_alu_result;
+  wire [31:0] mem_reg_write_data;
   ID u_ID (
     .i_clk(i_clk),
     .i_rst(i_rst),
@@ -82,6 +87,15 @@ module cpu_top (
     .i_reg_write_data(wb_reg_write_data),
     .i_reg_write_addr(wb_reg_write_addr),
     .i_register_file_write_enable(wb_reg_write_enable),
+    .i_ex_reg_write_enable(ex_register_file_write_enable),
+    .i_mem_reg_write_enable(mem_reg_write_enable),
+    .i_wb_reg_write_enable(wb_reg_write_enable),
+    .i_ex_reg_write_data(ex_alu_result),
+    .i_mem_reg_write_data(mem_reg_write_data),
+    .i_wb_reg_write_data(wb_reg_write_data),
+    .i_ex_reg_write_addr(ex_reg_write_addr),
+    .i_mem_reg_write_addr(mem_reg_write_addr),
+    .i_wb_reg_write_addr(wb_reg_write_addr),
     .o_alu_ctrl(id_alu_ctrl),
     .o_imm_extend_ctrl(id_imm_extend_ctrl),
     .o_interrupt_ctrl(id_interrupt_ctrl),
@@ -102,7 +116,6 @@ module cpu_top (
   wire [15:0] ex_imm;
   wire [3:0] ex_alu_ctrl;
   wire [1:0] ex_imm_extend_ctrl;
-  wire ex_register_file_write_enable;
   wire ex_data_memory_write_enable;
   wire ex_mux32_1_ctrl;
   wire ex_mux32_2_ctrl;
@@ -134,9 +147,6 @@ module cpu_top (
     .o_mux32_2_ctrl(ex_mux32_2_ctrl)
   );
 
-  wire mem_reg_write_enable;
-  wire [4:0] mem_reg_write_addr;
-  wire [31:0] ex_alu_result;
   EX u_EX (
     .i_reg_data1(ex_reg_data1),
     .i_reg_data2(ex_reg_data2),
@@ -150,6 +160,8 @@ module cpu_top (
     .i_wb_reg_write_addr(wb_reg_write_addr),
     .i_rs(ex_rs),
     .i_rt(ex_rt),
+    .i_mem_reg_data(mem_reg_write_data),
+    .i_wb_reg_data(wb_reg_write_data),
     .o_alu_result(ex_alu_result)
   );
 
@@ -177,7 +189,6 @@ module cpu_top (
   );
   assign mem_reg_write_enable = mem_register_file_write_enable;
 
-  wire [31:0] mem_reg_write_data;
   MEM u_MEM (
     .i_clk(i_clk),
     .i_rst(i_rst),

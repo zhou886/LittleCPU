@@ -27,6 +27,15 @@ module ID (
     input wire [31:0] i_inst,
     input wire [31:0] i_reg_write_data,
     input wire [4:0] i_reg_write_addr,
+    input wire i_ex_reg_write_enable,
+    input wire i_mem_reg_write_enable,
+    input wire i_wb_reg_write_enable,
+    input wire [31:0] i_ex_reg_write_data,
+    input wire [31:0] i_mem_reg_write_data,
+    input wire [31:0] i_wb_reg_write_data,
+    input wire [4:0] i_ex_reg_write_addr,
+    input wire [4:0] i_mem_reg_write_addr,
+    input wire [4:0] i_wb_reg_write_addr,
     input wire i_register_file_write_enable,
 
     output wire [3:0] o_alu_ctrl,
@@ -91,13 +100,47 @@ module ID (
     .o_read_data2(o_reg_data2)
   );
 
+  wire [1:0] npc_input1_mux_ctrl;
+  wire [1:0] npc_input2_mux_ctrl;
+  ID_forword_unit u_ID_forward_unit (
+    .i_ex_reg_write_enable(i_ex_reg_write_enable),
+    .i_mem_reg_write_enable(i_mem_reg_write_enable),
+    .i_wb_reg_write_enable(i_wb_reg_write_enable),
+    .i_ex_reg_write_addr(i_ex_reg_write_addr),
+    .i_mem_reg_write_addr(i_mem_reg_write_addr),
+    .i_wb_reg_write_addr(i_wb_reg_write_addr),
+    .i_rs(rs),
+    .i_rt(rt),
+    .o_npc_input1_mux_ctrl(npc_input1_mux_ctrl),
+    .o_npc_input2_mux_ctrl(npc_input2_mux_ctrl)
+  );
+
+  wire [31:0] npc_input1;
+  wire [31:0] npc_input2;
+  mux32_4_1 u_npc_input1_mux (
+    .i_input1(o_reg_data1),
+    .i_input2(i_ex_reg_write_data),
+    .i_input3(i_mem_reg_write_data),
+    .i_input4(i_wb_reg_write_data),
+    .i_ctrl(npc_input1_mux_ctrl),
+    .o_output(npc_input1)
+  );
+  mux32_4_1 u_npc_input2_mux (
+    .i_input1(o_reg_data2),
+    .i_input2(i_ex_reg_write_data),
+    .i_input3(i_mem_reg_write_data),
+    .i_input4(i_wb_reg_write_data),
+    .i_ctrl(npc_input2_mux_ctrl),
+    .o_output(npc_input2)
+  );
+
   npc u_npc (
     .i_ctrl(npc_ctrl),
     .i_addr(addr),
     .i_offset(imm),
     .i_pc(i_pc),
-    .i_input1(o_reg_data1),
-    .i_input2(o_reg_data2),
+    .i_input1(npc_input1),
+    .i_input2(npc_input2),
     .o_npc(o_npc)
   );
 endmodule

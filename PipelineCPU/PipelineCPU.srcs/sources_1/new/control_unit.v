@@ -89,6 +89,9 @@ module control_unit (
 
       (inst_type == `INST_VSRL)   ? `ALU_MR :
 
+      (inst_type == `INST_SLTI
+      || inst_type == `INST_SLTIU) ? `ALU_JGE :
+      
       `ALU_DEF;
 
 
@@ -106,7 +109,6 @@ module control_unit (
     (inst_type == `INST_ADDI 
     || inst_type == `INST_ADDIU
     || inst_type == `INST_SLTI
-    || inst_type == `INST_SLTIU
     || inst_type == `INST_LW
     || inst_type == `INST_SW) ? `IMM_SIGN_EXT :
 
