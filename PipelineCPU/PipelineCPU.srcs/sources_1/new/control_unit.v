@@ -112,7 +112,6 @@ module control_unit (
 
     `IMM_ZERO_EXT;
 
-
   assign o_interrupt_ctrl = 2'b0;
 
   assign o_mux32_1_ctrl = 

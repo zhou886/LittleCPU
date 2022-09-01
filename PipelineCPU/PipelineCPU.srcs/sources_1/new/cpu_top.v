@@ -29,7 +29,7 @@ module cpu_top (
   wire [4:0] ex_reg_write_addr;
   wire [4:0] id_rs;
   wire [4:0] id_rt;
-  wire [3:0] pipeline_ctrl;
+  wire [4:0] pipeline_ctrl;
   pipeline_control_unit u_pipeline_control_unit (
     .i_rst(i_rst),
     .i_clk(i_clk),
@@ -89,7 +89,7 @@ module cpu_top (
     .o_register_file_write_enable(id_register_file_write_enable),
     .o_data_memory_write_enable(id_data_memory_write_enable),
     .o_mux32_1_ctrl(id_mux32_1_ctrl),
-    .o_mux32_2_ctrl(id_mux32_1_ctrl),
+    .o_mux32_2_ctrl(id_mux32_2_ctrl),
     .o_reg_data1(id_reg_data1),
     .o_reg_data2(id_reg_data2),
     .o_npc(npc)
@@ -168,7 +168,7 @@ module cpu_top (
     .i_data_memory_write_enable(ex_data_memory_write_enable),
     .i_register_file_write_enable(ex_register_file_write_enable),
     .i_mux32_2_ctrl(ex_mux32_2_ctrl),
-    .o_alu_result(o_alu_result),
+    .o_alu_result(mem_alu_result),
     .o_reg_data2(mem_reg_data2),
     .o_reg_write_addr(mem_reg_write_addr),
     .o_data_memory_write_enable(mem_data_memory_write_enable),
@@ -192,6 +192,7 @@ module cpu_top (
   MEM_WB_reg u_MEM_WB_reg (
     .i_clk(i_clk),
     .i_rst(i_rst),
+    .i_ctrl(pipeline_ctrl[4]),
     .i_reg_write_addr(mem_reg_write_addr),
     .i_reg_write_data(mem_reg_write_data),
     .i_register_file_write_enable(mem_register_file_write_enable),

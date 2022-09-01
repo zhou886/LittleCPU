@@ -23,6 +23,7 @@
 module MEM_WB_reg (
     input wire i_clk,
     input wire i_rst,
+    input wire i_ctrl,
     input wire [31:0] i_reg_write_data,
     input wire [4:0] i_reg_write_addr,
     input wire i_register_file_write_enable,
@@ -41,7 +42,7 @@ module MEM_WB_reg (
         reg_write_addr <= 5'b0;
         register_file_write_enable = 1'b0;
     end
-    else begin
+    else if (i_ctrl) begin
         reg_write_data <= i_reg_write_data;
         reg_write_addr <= i_reg_write_addr;
         register_file_write_enable <= i_register_file_write_enable;

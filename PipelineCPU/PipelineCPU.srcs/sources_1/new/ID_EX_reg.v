@@ -111,4 +111,5 @@ module ID_EX_reg (
   assign o_data_memory_write_enable = data_memory_write_enable;
   assign o_mux32_1_ctrl = mux32_1_ctrl;
   assign o_mux32_2_ctrl = mux32_2_ctrl;
+  assign o_reg_write_addr = reg_write_addr;
 endmodule

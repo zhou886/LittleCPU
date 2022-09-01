@@ -28,16 +28,27 @@ module pipeline_control_unit (
     input wire [4:0] i_rs,
     input wire [4:0] i_rt,
 
-    output wire [3:0] o_pipeline_ctrl
+    output wire [4:0] o_pipeline_ctrl
 );
-  reg [3:0] pipeline_ctrl;
+  reg [4:0] pipeline_ctrl;
   always @(posedge i_clk) begin
     if (!i_rst) begin
-      pipeline_ctrl <= 4'b1111;
+      pipeline_ctrl <= 5'b00001;
     end else if (i_ex_is_lw && (i_ex_reg_write_addr == i_rs || i_ex_reg_write_addr == i_rt)) begin
-      pipeline_ctrl <= 4'b1000;
+      pipeline_ctrl <= 5'b11000;
     end else begin
-      pipeline_ctrl <= 4'b1111;
+      if (pipeline_ctrl == 5'b00001) begin
+        pipeline_ctrl <= 5'b00011;
+      end
+      else if (pipeline_ctrl == 5'b00011) begin
+        pipeline_ctrl <= 5'b00111;
+      end
+      else if (pipeline_ctrl == 5'b00111) begin
+        pipeline_ctrl <= 5'b01111;
+      end
+      else begin
+        pipeline_ctrl <= 5'b11111;
+      end
     end
   end
   assign o_pipeline_ctrl = pipeline_ctrl;
