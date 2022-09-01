@@ -25,8 +25,8 @@
 | LUI   | 001111 | 00000 | rd   | imm  | rd=imm<<16                   |
 | LW    | 100011 | rs    | rd   | imm  | rd=Mem[rs+imm]               |
 | SW    | 101011 | rs    | rd   | imm  | Mem[rs+imm]=rd               |
-| BEQ   | 000100 | rs    | rd   | imm  | PC=(rs==rt)?{PC+4+imm<<2}:PC |
-| BNE   | 000101 | rs    | rd   | imm  | PC=(rs!=rt)?{PC+4+imm<<2}:PC |
+| BEQ   | 000100 | rs    | rt   | imm  | PC=(rs==rt)?{PC+4+imm<<2}:PC |
+| BNE   | 000101 | rs    | rt   | imm  | PC=(rs!=rt)?{PC+4+imm<<2}:PC |
 
 ### R型指令
 
