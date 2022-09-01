@@ -21,13 +21,10 @@
 
 
 module EX (
-    input wire [31:0] i_pc,
     input wire [31:0] i_reg_data1,
     input wire [31:0] i_reg_data2,
     input wire [15:0] i_imm,
-    input wire [25:0] i_addr,
     input wire [3:0] i_alu_ctrl,
-    input wire [2:0] i_npc_ctrl,
     input wire [1:0] i_imm_extend_ctrl,
     input wire i_mux32_1_ctrl,
     input wire i_mem_reg_write_enable,
@@ -91,14 +88,5 @@ module EX (
     .i_input1(alu_input1),
     .i_input2(alu_input2),
     .o_output(o_alu_result)
-  );
-
-  npc u_npc (
-    .i_ctrl(i_npc_ctrl),
-    .i_addr(i_addr),
-    .i_offset(i_imm),
-    .i_pc(i_pc),
-    .i_input1(i_reg_data1),
-    .i_input2(i_reg_data2)
   );
 endmodule

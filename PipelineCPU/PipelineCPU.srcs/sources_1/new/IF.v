@@ -38,7 +38,7 @@ module IF (
   );
 
   inst_memory u_inst_memory (
-      .i_addr(o_pc),
+      .i_addr(o_pc[9:2]),
       .o_inst(o_inst)
   );
 endmodule

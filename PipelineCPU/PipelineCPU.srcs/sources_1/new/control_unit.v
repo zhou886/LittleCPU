@@ -115,6 +115,19 @@ module control_unit (
 
   assign o_interrupt_ctrl = 2'b0;
 
+  assign o_mux32_1_ctrl = 
+  (inst_type == `INST_ADDI
+  || inst_type == `INST_ADDIU
+  || inst_type == `INST_SLTI
+  || inst_type == `INST_SLTIU
+  || inst_type == `INST_ANDI
+  || inst_type == `INST_ORI
+  || inst_type == `INST_XORI
+  || inst_type == `INST_LUI
+  || inst_type == `INST_LW
+  || inst_type == `INST_SW) ? 1'b1 : 1'b0;
+
+  assign o_mux32_2_ctrl = (inst_type == `INST_LW) ? 1'b1 : 1'b0;
 
   assign o_data_memory_write_enable = (inst_type == `INST_SW) ? 1'b1 : 1'b0;
   assign o_register_file_write_enable = 
@@ -126,7 +139,14 @@ module control_unit (
   || inst_type == `INST_DEF) ? 1'b0 : 1'b1;
 
 
-  assign o_mux32_1_ctrl = (inst_type >= `INST_ADDI && inst_type <= `INST_SW) ? 1'b1 : 1'b0; // I-type Instruction
-  assign o_mux32_2_ctrl = (inst_type == `INST_LW) ? 1'b1 : 1'b0; 
-  assign o_mux5_1_ctrl = (inst_type >= `INST_ADD && inst_type <= `INST_VSRL) ? 1'b1 : 1'b0; // R-type Instruction
+  assign o_mux5_1_ctrl = 
+  (inst_type == `INST_ADD
+  || inst_type == `INST_ADDU
+  || inst_type == `INST_SUB
+  || inst_type == `INST_SUBU
+  || inst_type == `INST_AND
+  || inst_type == `INST_OR
+  || inst_type == `INST_XOR
+  || inst_type == `INST_SLLV
+  || inst_type == `INST_VSRL) ? 1'b1 : 1'b0;
 endmodule

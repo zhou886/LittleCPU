@@ -23,13 +23,13 @@
 module ID (
     input wire i_clk,
     input wire i_rst,
+    input wire [31:0] i_pc,
     input wire [31:0] i_inst,
     input wire [31:0] i_reg_write_data,
     input wire [4:0] i_reg_write_addr,
     input wire i_register_file_write_enable,
 
     output wire [3:0] o_alu_ctrl,
-    output wire [2:0] o_npc_ctrl,
     output wire [1:0] o_imm_extend_ctrl,
     output wire [1:0] o_interrupt_ctrl,
     output wire [4:0] o_reg_write_addr,
@@ -38,7 +38,8 @@ module ID (
     output wire o_mux32_1_ctrl,
     output wire o_mux32_2_ctrl,
     output wire [31:0] o_reg_data1,
-    output wire [31:0] o_reg_data2
+    output wire [31:0] o_reg_data2,
+    output wire [31:0] o_npc
 );
   wire [ 5:0] opcode;
   wire [ 5:0] func;
@@ -47,6 +48,7 @@ module ID (
   wire [ 5:0] rd;
   wire [15:0] imm;
   wire [25:0] addr;
+  wire [2:0] npc_ctrl;
 
   assign opcode = i_inst[31:26];
   assign rs = i_inst[25:21];
@@ -61,7 +63,7 @@ module ID (
       .i_opcode(opcode),
       .i_func(func),
       .o_alu_ctrl(o_alu_ctrl),
-      .o_npc_ctrl(o_npc_ctrl),
+      .o_npc_ctrl(npc_ctrl),
       .o_imm_extend_ctrl(o_imm_extend_ctrl),
       .o_interrupt_ctrl(o_interrupt_ctrl),
       .o_register_file_write_enable(o_register_file_write_enable),
@@ -87,5 +89,15 @@ module ID (
     .i_write_data(i_reg_write_data),
     .o_read_data1(o_reg_data1),
     .o_read_data2(o_reg_data2)
+  );
+
+  npc u_npc (
+    .i_ctrl(npc_ctrl),
+    .i_addr(addr),
+    .i_offset(imm),
+    .i_pc(i_pc),
+    .i_input1(o_reg_data1),
+    .i_input2(o_reg_data2),
+    .o_npc(o_npc)
   );
 endmodule

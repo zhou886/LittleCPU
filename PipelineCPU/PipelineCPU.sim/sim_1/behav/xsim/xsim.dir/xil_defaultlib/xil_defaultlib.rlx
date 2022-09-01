@@ -1,0 +1,27 @@
+0.6
+2019.2
+Nov  6 2019
+21:57:16
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.sim/sim_1/behav/xsim/glbl.v,1573089660,verilog,,,,glbl,,,,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sim_1/new/testbench.v,1661993831,verilog,,,,testbench,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/EX.v,1661994956,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/EX_MEM_reg.v,,EX,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/EX_MEM_reg.v,1661911450,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/ID.v,,EX_MEM_reg,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/ID.v,1661997987,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/ID_EX_reg.v,,ID,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/ID_EX_reg.v,1661995039,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/IF.v,,ID_EX_reg,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/IF.v,1661995748,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/IF_ID_reg.v,,IF,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/IF_ID_reg.v,1661854630,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/MEM.v,,IF_ID_reg,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/MEM.v,1661995780,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/MEM_WB_reg.v,,MEM,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/MEM_WB_reg.v,1661847122,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/alu.v,,MEM_WB_reg,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/alu.v,1661737534,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/control_unit.v,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/definition.vh,alu,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/control_unit.v,1661997980,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/cpu_top.v,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/definition.vh,control_unit,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/cpu_top.v,1661995328,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/data_memory.v,,cpu_top,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/data_memory.v,1661496140,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/forward_unit.v,,data_memory,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/definition.vh,1661739062,verilog,,,,,,,,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/forward_unit.v,1661865890,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/imm_extend.v,,forward_unit,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/imm_extend.v,1661739119,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/inst_memory.v,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/definition.vh,imm_extend,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/inst_memory.v,1661496341,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/mux.v,,inst_memory,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/mux.v,1661865326,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/npc.v,,mux32;mux32_3_1;mux5,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/npc.v,1661525447,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/pc.v,,npc,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/pc.v,1661852644,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/pipeline_control_unit.v,,pc,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/pipeline_control_unit.v,1661994223,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/register_file.v,,pipeline_control_unit,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,
+D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sources_1/new/register_file.v,1661496181,verilog,,D:/CODE/Verilog/LittleCPU/PipelineCPU/PipelineCPU.srcs/sim_1/new/testbench.v,,register_file,,,../../../../PipelineCPU.srcs/sources_1/new,,,,,

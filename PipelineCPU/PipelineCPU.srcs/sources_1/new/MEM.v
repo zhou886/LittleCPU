@@ -34,7 +34,7 @@ module MEM (
   data_memory u_data_memory (
     .i_clk(i_clk),
     .i_write_enable(i_data_memory_write_enable),
-    .i_addr(i_alu_result),
+    .i_addr(i_alu_result[9:2]),
     .i_write_data(i_reg_data2),
     .o_read_data(data_memory_read_data)
   );

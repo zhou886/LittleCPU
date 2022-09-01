@@ -29,9 +29,10 @@ module testbench();
         $readmemh("D:/CODE/Verilog/LittleCPU/PipelineCPU/TestResources/InstMemory.txt", u_cpu_top.u_IF.u_inst_memory.inst_memory, 0, 255);
         $readmemh("D:/CODE/Verilog/LittleCPU/PipelineCPU/TestResources/DataMemory.txt", u_cpu_top.u_MEM.u_data_memory.data_memory, 0, 255);
         $readmemh("D:/CODE/Verilog/LittleCPU/PipelineCPU/TestResources/RegisterFile.txt", u_cpu_top.u_ID.u_register_file.register_file, 0, 31);
+        rst <= 1;
         clk <= 0;
-        rst <= 0;
-        #12 rst <= 1;
+        #12 rst <= 0;
+        #42 rst <= 1;
     end
 
     always #20 clk <= ~clk;

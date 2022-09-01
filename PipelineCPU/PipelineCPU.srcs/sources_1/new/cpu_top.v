@@ -31,6 +31,8 @@ module cpu_top (
   wire [4:0] id_rt;
   wire [3:0] pipeline_ctrl;
   pipeline_control_unit u_pipeline_control_unit (
+    .i_rst(i_rst),
+    .i_clk(i_clk),
     .i_ex_is_lw(ex_is_lw),
     .i_ex_reg_write_addr(ex_reg_write_addr),
     .i_rs(id_rs),
@@ -60,7 +62,6 @@ module cpu_top (
   );
 
   wire [3:0] id_alu_ctrl;
-  wire [2:0] id_npc_ctrl;
   wire [1:0] id_imm_extend_ctrl;
   wire [1:0] id_interrupt_ctrl;
   wire [4:0] id_reg_write_addr;
@@ -77,11 +78,11 @@ module cpu_top (
     .i_clk(i_clk),
     .i_rst(i_rst),
     .i_inst(id_inst),
+    .i_pc(pc),
     .i_reg_write_data(wb_reg_write_data),
     .i_reg_write_addr(wb_reg_write_addr),
     .i_register_file_write_enable(wb_reg_write_enable),
     .o_alu_ctrl(id_alu_ctrl),
-    .o_npc_ctrl(id_npc_ctrl),
     .o_imm_extend_ctrl(id_imm_extend_ctrl),
     .o_interrupt_ctrl(id_interrupt_ctrl),
     .o_reg_write_addr(id_reg_write_addr),
@@ -90,7 +91,8 @@ module cpu_top (
     .o_mux32_1_ctrl(id_mux32_1_ctrl),
     .o_mux32_2_ctrl(id_mux32_1_ctrl),
     .o_reg_data1(id_reg_data1),
-    .o_reg_data2(id_reg_data2)
+    .o_reg_data2(id_reg_data2),
+    .o_npc(npc)
   );
 
   wire [31:0] ex_reg_data1;
@@ -98,9 +100,7 @@ module cpu_top (
   wire [4:0] ex_rs;
   wire [4:0] ex_rt;
   wire [15:0] ex_imm;
-  wire [25:0] ex_addr;
   wire [3:0] ex_alu_ctrl;
-  wire [2:0] ex_npc_ctrl;
   wire [1:0] ex_imm_extend_ctrl;
   wire ex_register_file_write_enable;
   wire ex_data_memory_write_enable;
@@ -115,7 +115,6 @@ module cpu_top (
     .i_inst(id_inst),
     .i_reg_write_addr(id_reg_write_addr),
     .i_alu_ctrl(id_alu_ctrl),
-    .i_npc_ctrl(id_npc_ctrl),
     .i_imm_extend_ctrl(id_imm_extend_ctrl),
     .i_register_file_write_enable(id_register_file_write_enable),
     .i_data_memory_write_enable(id_data_memory_write_enable),
@@ -127,9 +126,7 @@ module cpu_top (
     .o_rs(ex_rs),
     .o_rt(ex_rt),
     .o_imm(ex_imm),
-    .o_addr(ex_addr),
     .o_alu_ctrl(ex_alu_ctrl),
-    .o_npc_ctrl(ex_npc_ctrl),
     .o_imm_extend_ctrl(ex_imm_extend_ctrl),
     .o_register_file_write_enable(ex_register_file_write_enable),
     .o_data_memory_write_enable(ex_data_memory_write_enable),
@@ -141,13 +138,10 @@ module cpu_top (
   wire [4:0] mem_reg_write_addr;
   wire [31:0] ex_alu_result;
   EX u_EX (
-    .i_pc(pc),
     .i_reg_data1(ex_reg_data1),
     .i_reg_data2(ex_reg_data2),
     .i_imm(ex_imm),
-    .i_addr(ex_addr),
     .i_alu_ctrl(ex_alu_ctrl),
-    .i_npc_ctrl(ex_npc_ctrl),
     .i_imm_extend_ctrl(ex_imm_extend_ctrl),
     .i_mux32_1_ctrl(ex_mux32_1_ctrl),
     .i_mem_reg_write_enable(mem_reg_write_enable),
@@ -156,8 +150,7 @@ module cpu_top (
     .i_wb_reg_write_addr(wb_reg_write_addr),
     .i_rs(ex_rs),
     .i_rt(ex_rt),
-    .o_alu_result(ex_alu_result),
-    .o_npc(npc)
+    .o_alu_result(ex_alu_result)
   );
 
   wire [31:0] mem_alu_result;
